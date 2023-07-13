@@ -1,0 +1,22 @@
+version: '3.0'
+
+services:
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - "5432:5432"
+  #volumes:
+  #- app-volume:/var/lib/postgresql/data
+
+  goapp:
+    tty: true
+    ports:
+      - "8888:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
